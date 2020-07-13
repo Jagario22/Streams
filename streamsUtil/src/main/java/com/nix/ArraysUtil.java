@@ -40,11 +40,13 @@ public class ArraysUtil {
         return IntStream.generate(() -> new Random().nextInt(length)).limit(length).toArray();
     }
 
-    public static int[] arraySplitting(int[] array) {
+    public static List<List<Integer>> arraySplitting(int[] array) {
         Integer[] target = Arrays.stream(array).boxed().toArray(Integer[]::new);
-        List<Integer> result = Stream.of(target).filter(n-> n% 2 == 0).sorted(Comparator.reverseOrder()).collect(Collectors.toList());
-        List<Integer> odd = Stream.of(target).filter(n-> n % 2 != 0).sorted(Comparator.reverseOrder()).collect(Collectors.toList());
-        result.addAll(odd);
-        return result.stream().mapToInt(i->i).toArray();
+        List<List<Integer>> result = new ArrayList<>();
+        List<Integer> evenNums = Stream.of(target).filter(n-> n% 2 == 0).sorted(Comparator.reverseOrder()).collect(Collectors.toList());
+        List<Integer> oddNums = Stream.of(target).filter(n-> n % 2 != 0).sorted(Comparator.reverseOrder()).collect(Collectors.toList());
+        result.add(evenNums);
+        result.add(oddNums);
+        return result;
     }
 }

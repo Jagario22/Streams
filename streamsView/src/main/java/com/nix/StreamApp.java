@@ -51,9 +51,9 @@ public class StreamApp {
         System.out.println("6. Даты: " + localDates.toString());
         System.out.println("Дни рождения: " + resultBirthdays.toString() + "\n");
 
-        int[] resultArr = ArraysUtil.arraySplitting(arr2);
+        List<List<Integer>> resultLists = ArraysUtil.arraySplitting(arr2);
         System.out.println("7. Данные: " + Arrays.toString(arr2));
-        System.out.println("Массив после разделения: " + Arrays.toString(resultArr) + "\n");
+        System.out.println("Массив после разделения: " + resultLists.toString() + "\n");
 
         List<UnaryOperator<Integer>> unaryOperators = new ArrayList<>();
         unaryOperators.add(x -> x * x);
