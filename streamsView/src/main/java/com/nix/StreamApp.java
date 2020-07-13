@@ -1,13 +1,14 @@
 package com.nix;
 
+import java.time.LocalDate;
+import java.time.Month;
 import java.time.Year;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
-import java.util.OptionalDouble;
+import java.util.*;
+import java.util.function.UnaryOperator;
 
 public class StreamApp {
-    public static double[] arr = ArraysUtil.generateArr(10);
+    public static double[] arr = ArraysUtil.generateDoubleArr(10);
+    public static int[] arr2 = ArraysUtil.generateIntArr(10);
 
     public static void main(String[] args) {
 
@@ -29,12 +30,37 @@ public class StreamApp {
         List<String> strings = Arrays.asList("1abb3a", "2ab3c5", "4ab4c");
         List<String> resultStrings = StringUtil.cut("[\\d]", strings);
         System.out.println("3. Строки: " + strings.toString());
+
         System.out.println("Результат (строки состоящие из букв): " + resultStrings + "\n");
 
 
         List<String> palindromes = Arrays.asList("шабаш шалаш  привет    звезда ", "   тет-а-тет    ага    земля   ", "медведь");
         List<String> result = StringUtil.palindromes(palindromes);
         System.out.println("4. Строки " + palindromes.toString());
-        System.out.println("Палиндромы " + result.toString());
+        System.out.println("Палиндромы " + result.toString() + "\n");
+
+
+        List<LocalDate> localDates = Arrays.asList(LocalDate.of(2000, 12, 22),
+                LocalDate.of(2000,12,23), LocalDate.of(2000,11,23));
+        Map<Month, Long> resultBirthdays = YearsUtil.birthdays(localDates);
+        System.out.println("6. Даты: " + localDates.toString());
+        System.out.println("Дни рождения: " + resultBirthdays.toString() + "\n");
+
+        int[] resultArr = ArraysUtil.arraySplitting(arr2);
+        System.out.println("7. Данные: " + Arrays.toString(arr2));
+        System.out.println("Массив после разделения: " + Arrays.toString(resultArr) + "\n");
+
+
+        List<UnaryOperator<Integer>> unaryOperators = new ArrayList<>();
+        unaryOperators.add(x -> x * x);
+        unaryOperators.add(x -> x + x);
+        unaryOperators.add(x -> x * 2);
+        int num = 2;
+        Integer resultOperations = UnaryOperatorUtil.reduce(unaryOperators).apply(num);
+        System.out.println("8. Число " + num);
+        System.out.println("Результат объединения " + resultOperations);
+
+
+
     }
 }
